@@ -1,0 +1,120 @@
+ERA5 
+
+https://www.ecmwf.int/en/newsletter/147/news/era5-reanalysis-production 
+https://confluence.ecmwf.int/display/CKB/ERA5%3A+data+documentation 
+
+ERA5 Land
+https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-land?tab=overview 
+
+https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels?tab=overview 
+
+https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-land?tab=form 
+  
+ERA5: How to calculate wind speed and wind direction from u and v components of the wind?
+https://confluence.ecmwf.int/pages/viewpage.action?pageId=133262398 
+
+
+The following ECMWF Web API access key:
+
+    c166fa5b451d01936c2744791cbf2bfc
+
+for the username:
+
+    vyapiyev@nu.edu.kz
+
+will expire on:
+
+    2020-06-01 04:18:46+00:00
+
+Please visit the following URL in order to generate a *new* Web API access key:
+
+    https://apps.ecmwf.int/v1/key/update/c166fa5b451d01936c2744791cbf2bfc
+
+Remember to update your credentials in `~/.ecmwfapirc` and/or your scripts.
+
+With kind regards,
+
+The ECMWF Service Desk.
+   
+
+-------------
+
+Your API key
+Your registered email:	vyapiyev@nu.edu.kz
+Your API key:	c166fa5b451d01936c2744791cbf2bfc (valid until June 1, 2020, 4:18 a.m.)
+Content of $HOME/.ecmwfapirc	
+{
+    "url"   : "https://apps.ecmwf.int/v1",
+    "key"   : "c166fa5b451d01936c2744791cbf2bfc",
+    "email" : "vyapiyev@nu.edu.kz"
+}
+
+
+ERA Total precipitation
+
+#!/usr/bin/env python
+from ecmwfapi import ECMWFDataServer
+server = ECMWFDataServer()
+server.retrieve({
+    "class": "ei",
+    "dataset": "interim",
+    "date": "2008-01-01/to/2008-01-31",
+    "expver": "1",
+    "grid": "0.75/0.75",
+    "levtype": "sfc",
+    "param": "228.128",
+    "step": "12",
+    "stream": "oper",
+    "time": "00:00:00/12:00:00",
+    "type": "fc",
+    "target": "output",
+})
+
+ERA sunshine hours
+
+#!/usr/bin/env python
+from ecmwfapi import ECMWFDataServer
+server = ECMWFDataServer()
+server.retrieve({
+    "class": "ei",
+    "dataset": "interim",
+    "date": "2008-01-01/to/2008-01-31",
+    "expver": "1",
+    "grid": "0.75/0.75",
+    "levtype": "sfc",
+    "param": "189.128",
+    "step": "12",
+    "stream": "oper",
+    "time": "00:00:00/12:00:00",
+    "type": "fc",
+    "target": "output",
+})
+
+
+Hi Anne/Vadim
+
+Yes Anne you are right, as you said, see below please with few details
+
+For accumulated field (for example precipitation and all radiation parameters): we need to select a start time 00:00 (mid night) and 12:00 (midday), and both with step 12, this will give us two recordes per day as shown below:
+
+First record: acumulated precipitation from 00:00 to 12:00 (midnight +12 hours)
+
+Second record: acumulated precipitation from 12:00 to 24:00 (midday +12 hours)
+
+Then sum the two records  to get the daily total
+
+
+For instantaneous fields (for example wind speed, temperature, humidity ...etc), here it depends on the time of data that you need, but to get a daily data , I do suggest to select time 00:00 and 12:00 and select 3, 6, 9, 12 time steps, then average them up.
+
+
+Anne in regard your question: I thought there were also daily options, but it seems not.
+Yes, there is daily options, and monthly as well.
+
+
+Hope this would help
+
+
+Best wishes
+
+
+Ahmed

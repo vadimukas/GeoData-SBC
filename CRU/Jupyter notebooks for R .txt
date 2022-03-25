@@ -1,0 +1,39 @@
+
+Jupyter Notebook: An Introduction
+
+https://realpython.com/jupyter-notebook-introduction/
+
+10 Essential Jupyter Notebook Extensions for Data Scientists
+https://towardsdatascience.com/10-essential-jupyter-notebook-extensions-for-data-scientists-86b68ec7a66e 
+
+Once installed just type in DOS prompt
+
+jupyter notebook
+
+
+How to install Python - Geopandas in Windows on a Conda Environment - Tutorial
+https://hatarilabs.com/ih-en/how-to-install-python-geopandas-in-windows-on-a-conda-envirojupnment-tutorial 
+
+https://medium.com/analytics-vidhya/fastest-way-to-install-geopandas-in-jupyter-notebook-on-windows-8f734e11fa2b 
+
+
+conda create -n geo_env 
+
+I Python, You R, We Julia
+https://blog.jupyter.org/i-python-you-r-we-julia-baf064ca1fb6 
+
+
+Creating R environment for r version 4 or later
+
+https://datascience.stackexchange.com/questions/77335/anconda-r-version-how-to-upgrade-to-4-0-and-later 
+
+conda create --name r4-base
+conda activate r4-base
+conda install -c conda-forge r-base=4.1.0
+conda install jupyter
+  
+Or
+conda install -c conda-forge r-base=4.0
+
+Jupyter And R Markdown: Notebooks With R 
+https://www.r-bloggers.com/2016/11/jupyter-and-r-markdown-notebooks-with-r/ 
